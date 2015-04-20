@@ -1137,6 +1137,16 @@
 
 #pragma mark - Grid
 
+- (void)setGridColumnsInPortrait:(CGFloat)columns landscape:(CGFloat)columnsL {
+    _gridColumns = MAX(columns, 1);
+    _gridColumnsL = MAX(columnsL, 1);
+    
+    if (_gridController) {
+        [_gridController setColumnsInPortrait:columns landscape:columnsL];
+    }
+}
+
+
 - (void)showGridAnimated {
     [self showGrid:YES];
 }
@@ -1150,6 +1160,7 @@
     _gridController.initialContentOffset = _currentGridContentOffset;
     _gridController.browser = self;
     _gridController.selectionMode = _displaySelectionButtons;
+    [_gridController setColumnsInPortrait:_gridColumns landscape:_gridColumnsL];
     _gridController.view.frame = self.view.bounds;
     _gridController.view.frame = CGRectOffset(_gridController.view.frame, 0, (self.startOnGrid ? -1 : 1) * self.view.bounds.size.height);
 

@@ -38,6 +38,8 @@
     UIActionSheet *_actionsSheet;
     
     // Grid
+    CGFloat _gridColumns;
+    CGFloat _gridColumnsL;
     MWGridViewController *_gridController;
     UIBarButtonItem *_gridPreviousLeftNavItem;
     UIBarButtonItem *_gridPreviousRightNavItem;

@@ -16,4 +16,6 @@
 @property (nonatomic) BOOL selectionMode;
 @property (nonatomic) CGPoint initialContentOffset;
 
+- (void)setColumnsInPortrait:(CGFloat)columns landscape:(CGFloat)columnsL;
+
 @end

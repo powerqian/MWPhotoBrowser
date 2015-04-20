@@ -22,6 +22,15 @@
 
 @implementation MWGridViewController
 
+#pragma mark - Public APIs
+- (void)setColumnsInPortrait:(CGFloat)columns landscape:(CGFloat)columnsL {
+    _columns = MAX(columns, 1);
+    _columnsL = MAX(columnsL, 1);
+    [self.view setNeedsLayout];
+}
+
+#pragma mark - Life Cycle
+
 - (id)init {
     if ((self = [super initWithCollectionViewLayout:[PSTCollectionViewFlowLayout new]])) {
         
@@ -47,7 +56,7 @@
             _margin = 0, _gutter = 1;
             _marginL = 1, _gutterL = 2;
         } else if([UIScreen mainScreen].bounds.size.height == 736) {
-            // iPHone 6+
+            // iPhone 6+
             _columns = 5, _columnsL = 8;
             _margin = 0, _gutter = 1;
             _marginL = 1, _gutterL = 2;

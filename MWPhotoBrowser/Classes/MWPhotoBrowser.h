@@ -60,6 +60,9 @@
 // Reloads the photo browser and refetches data
 - (void)reloadData;
 
+// Set custom columns for grid layout.
+- (void)setGridColumnsInPortrait:(CGFloat)columns landscape:(CGFloat)columnsL;
+
 // Set page that photo browser starts on
 - (void)setCurrentPhotoIndex:(NSUInteger)index;
 - (void)setInitialPageIndex:(NSUInteger)index  __attribute__((deprecated("Use setCurrentPhotoIndex: instead"))); // Depreciated
