@@ -1131,7 +1131,13 @@
         }
     }
     if (index != NSUIntegerMax) {
-        [self setPhotoSelected:selectedButton.selected atIndex:index];
+        BOOL shouldSelect = YES;
+        if ([self.delegate respondsToSelector:@selector(photoBrowser:shouldSelectPhotoAtIndex:)]) {
+            shouldSelect = [self.delegate photoBrowser:self shouldSelectPhotoAtIndex:index];
+        }
+        if (shouldSelect) {
+            [self setPhotoSelected:selectedButton.selected atIndex:index];
+        }
     }
 }
 
