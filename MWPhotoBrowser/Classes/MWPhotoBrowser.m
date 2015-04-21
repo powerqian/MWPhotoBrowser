@@ -1010,7 +1010,12 @@
         UINavigationBar *navBar = self.navigationController.navigationBar;
         yOffset = navBar.frame.origin.y + navBar.frame.size.height;
     }
+    CGSize statusBarFrameSize = [[UIApplication sharedApplication] statusBarFrame].size;
     CGFloat statusBarOffset = [[UIApplication sharedApplication] statusBarFrame].size.height;
+    if (![[UIApplication sharedApplication] respondsToSelector:@selector(registerUserNotificationSettings:)]) {
+        // iOS 7 or earlier. The frame will change when device rotates. So need to get the offset differently based on orientation.
+        statusBarOffset = UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation) ? statusBarFrameSize.width : statusBarFrameSize.height;
+    }
 #if __IPHONE_OS_VERSION_MIN_REQUIRED < __IPHONE_7_0
     if (SYSTEM_VERSION_LESS_THAN(@"7") && !self.wantsFullScreenLayout) statusBarOffset = 0;
 #endif
