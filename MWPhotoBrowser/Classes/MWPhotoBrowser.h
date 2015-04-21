@@ -37,6 +37,7 @@
 - (void)photoBrowser:(MWPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index selectedChanged:(BOOL)selected;
 - (void)photoBrowserDidFinishModalPresentation:(MWPhotoBrowser *)photoBrowser;
 - (BOOL)photoBrowser:(MWPhotoBrowser *)photoBrowser shouldSelectPhotoAtIndex:(NSUInteger)index;
+- (BOOL)photoBrowserShouldHideStatusBar:(MWPhotoBrowser *)photoBrowser;
 
 @end
 

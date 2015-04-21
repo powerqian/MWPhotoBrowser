@@ -1269,7 +1269,10 @@
             // iOS 7
             // Hide status bar
             if (!_isVCBasedStatusBarAppearance) {
-                
+                BOOL hideStatusBar = hidden;
+                if (hideStatusBar && [self.delegate respondsToSelector:@selector(photoBrowserShouldHideStatusBar:)]) {
+                    hideStatusBar = [self.delegate photoBrowserShouldHideStatusBar:self];
+                }
                 // Non-view controller based
                 [[UIApplication sharedApplication] setStatusBarHidden:hidden withAnimation:animated ? UIStatusBarAnimationSlide : UIStatusBarAnimationNone];
                 
