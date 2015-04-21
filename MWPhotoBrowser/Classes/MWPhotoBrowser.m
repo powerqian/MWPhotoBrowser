@@ -1274,7 +1274,7 @@
                     hideStatusBar = [self.delegate photoBrowserShouldHideStatusBar:self];
                 }
                 // Non-view controller based
-                [[UIApplication sharedApplication] setStatusBarHidden:hidden withAnimation:animated ? UIStatusBarAnimationSlide : UIStatusBarAnimationNone];
+                [[UIApplication sharedApplication] setStatusBarHidden:hideStatusBar withAnimation:animated ? UIStatusBarAnimationSlide : UIStatusBarAnimationNone];
                 
             } else {
                 
