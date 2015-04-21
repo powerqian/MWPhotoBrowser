@@ -1122,7 +1122,6 @@
 
 - (void)selectedButtonTapped:(id)sender {
     UIButton *selectedButton = (UIButton *)sender;
-    selectedButton.selected = !selectedButton.selected;
     NSUInteger index = NSUIntegerMax;
     for (MWZoomingScrollView *page in _visiblePages) {
         if (page.selectedButton == selectedButton) {
@@ -1132,10 +1131,11 @@
     }
     if (index != NSUIntegerMax) {
         BOOL shouldSelect = YES;
-        if ([self.delegate respondsToSelector:@selector(photoBrowser:shouldSelectPhotoAtIndex:)]) {
+        if (!selectedButton.selected && [self.delegate respondsToSelector:@selector(photoBrowser:shouldSelectPhotoAtIndex:)]) {
             shouldSelect = [self.delegate photoBrowser:self shouldSelectPhotoAtIndex:index];
         }
         if (shouldSelect) {
+            selectedButton.selected = !selectedButton.selected;
             [self setPhotoSelected:selectedButton.selected atIndex:index];
         }
     }
