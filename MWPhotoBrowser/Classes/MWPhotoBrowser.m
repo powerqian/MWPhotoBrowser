@@ -348,6 +348,14 @@
 	// Super
 	[super viewWillAppear:animated];
     
+    // Update wantsFullScreenLayout here to make it effective.
+    // Only make the view controller full screen for iOS 6 or earlier
+    // if it is a iPhone. iPad should present the photo browser inside a popover,
+    // which does not need to be full screen.
+#if __IPHONE_OS_VERSION_MIN_REQUIRED < __IPHONE_7_0
+    if (SYSTEM_VERSION_LESS_THAN(@"7")) self.wantsFullScreenLayout = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone;
+#endif    
+
     // Status bar
     if ([UIViewController instancesRespondToSelector:@selector(prefersStatusBarHidden)]) {
         _leaveStatusBarAlone = [self presentingViewControllerPrefersStatusBarHidden];
